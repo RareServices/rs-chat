@@ -59,11 +59,11 @@ Config.Webhooks = {
 Config.delay = 59
 
 
-Config.prefix = '[SERVER NAME] '
+Config.prefix = '[Rare Services] '
 
 Config.messages = {   
-    'Για οποιοδήποτε πρόβλημα - ερώτηση κάντε report',
-    'Τα Restart του Server είναι : 04:00, 10:30, 17:00',
+    'For All Problems - Question submit a Report',
+    'Restart Server Hours : 04:00, 10:30, 17:00',
     -- 'Για να δείτε τα ATM της πόλης γράψτε /atms',
 }
 
@@ -73,4 +73,4 @@ Config.ignore = {
     --'license:123456789',
 }
 
-Config.CommandOnOffAutoChat = 'onoffauto'
+Config.CommandOnOffAutoChat = 'onoffautomsg'
