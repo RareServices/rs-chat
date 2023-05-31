@@ -8,8 +8,7 @@ end
 RegisterServerEvent('rs-chat:serverCommands')
 AddEventHandler('rs-chat:serverCommands', function()
   local src = source
-	local commands = GetRegisteredCommands()
-
+  local commands = GetRegisteredCommands()
   TriggerClientEvent('rs-chat:recieveCommands', src, commands)
 end)
 
@@ -19,12 +18,11 @@ AddEventHandler('rs-chat:sendmsg', function(data)
     local xPlayer = ESX.GetPlayerFromId(src)
     if xPlayer.getInventoryItem('phone').count > 0 or xPlayer.getGroup() ~= "user" then
       MySQL.Async.fetchAll('SELECT phone_number, firstname, lastname FROM users WHERE identifier = @identifier', { ['@identifier'] = xPlayer.getIdentifier() }, function(result)
-
         sphone = result[1].phone_number
         sname = result[1].firstname
         slastname = result[1].lastname
         cmd = '['..src..'/'..GetPlayerName(src)..']'
-
+					
         local info = {
             type = data.type,
             msg = data.msg,
@@ -34,7 +32,6 @@ AddEventHandler('rs-chat:sendmsg', function(data)
             cmd = cmd,
             xp = xPlayer
         }
-
         if Config.ChatTypes[data.type] then 
           local cfg = Config.ChatTypes[data.type]
           local rank = Config.GroupRank
