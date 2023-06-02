@@ -42,8 +42,8 @@ Config.Reply ={
 }
 
 
-Config.Triggers = {
-    ['msg'] = 'gcPhone:sendMessage',
+Config.Phone = {
+    ['sms'] = 'gcPhone:sendMessage',
     ['call'] = 'gcPhone:startCall'
 }
 
