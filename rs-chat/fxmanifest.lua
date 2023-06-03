@@ -6,16 +6,16 @@ author 'Rare Services'
 description 'Chat System With Reply And Automessage for ESX 1.1 and Highter'
 version '1.2.2'
 
-shared_scripts 'source/config.lua'
+shared_scripts 'config.lua'
 
 server_scripts {
     '@mysql-async/lib/MySQL.lua',
-    'source/config.lua',
+    'config.lua',
     'source/server.lua'
 }
 
 client_scripts  {
-     'source/config.lua',
+     'config.lua',
      'source/client.lua'
 }
 
