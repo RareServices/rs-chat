@@ -4,7 +4,7 @@ lua54 'yes'
 
 author 'Rare Services'
 description 'Chat System With Reply And Automessage for ESX 1.1 and Highter'
-version '1.2.2'
+version '1.3.0'
 
 shared_scripts 'config.lua'
 
