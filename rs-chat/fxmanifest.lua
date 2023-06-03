@@ -7,6 +7,8 @@ description 'Chat System With Reply And Automessage for ESX 1.1 and Highter'
 
 version '1.2.2'
 
+shared_scripts 'config.lua'
+
 server_scripts {
 	'@mysql-async/lib/MySQL.lua',
 	'source/server.lua'
@@ -14,7 +16,6 @@ server_scripts {
 
 client_scripts 'source/client.lua'
 
-shared_scripts 'config.lua'
 
 files {
 	'ui/ui.html',
