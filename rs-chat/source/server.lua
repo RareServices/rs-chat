@@ -12,6 +12,60 @@ AddEventHandler('rs-chat:serverCommands', function()
   TriggerClientEvent('rs-chat:recieveCommands', src, commands)
 end)
 
+RegisterServerEvent('esx_chat:init')
+RegisterServerEvent('esx_chat:addTemplate')
+RegisterServerEvent('esx_chat:addMessage')
+RegisterServerEvent('esx_chat:addSuggestion')
+RegisterServerEvent('esx_chat:removeSuggestion')
+RegisterServerEvent('esx_chat:messageEntered')
+RegisterServerEvent('esx_chat:clear')
+RegisterServerEvent('__cfx_internal:commandFallback')
+
+
+AddEventHandler('__cfx_internal:commandFallback', function(command)
+    local name = GetPlayerName(source)
+
+    TriggerEvent('chatMessage', source, name, '/' .. command)
+
+    if not WasEventCanceled() then
+        TriggerClientEvent('chatMessage', -1, name, { 255, 255, 255 }, '/' .. command) 
+    end
+
+    CancelEvent()
+end)
+
+
+local function refreshCommands(player)
+    if GetRegisteredCommands then
+        local registeredCommands = GetRegisteredCommands()
+
+        local suggestions = {}
+
+        for _, command in ipairs(registeredCommands) do
+            if IsPlayerAceAllowed(player, ('command.%s'):format(command.name)) then
+                table.insert(suggestions, {
+                    name = '/' .. command.name,
+                    help = ''
+                })
+            end
+        end
+
+        TriggerClientEvent('esx_chat:addSuggestions', player, suggestions)
+    end
+end
+
+AddEventHandler('esx_chat:init', function()
+    refreshCommands(source)
+end)
+
+AddEventHandler('onServerResourceStart', function(resName)
+    Wait(500)
+
+    for _, player in ipairs(GetPlayers()) do
+        refreshCommands(player)
+    end
+end)
+
 RegisterServerEvent('rs-chat:sendmsg')
 AddEventHandler('rs-chat:sendmsg', function(data)
     local src = source
