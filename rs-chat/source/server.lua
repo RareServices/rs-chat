@@ -54,7 +54,7 @@ local function refreshCommands(player)
     end
 end
 
-AddEventHandler('esx_chat:init', function()
+AddEventHandler('chat:init', function()
     refreshCommands(source)
 end)
 
